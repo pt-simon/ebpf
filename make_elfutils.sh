@@ -1,4 +1,4 @@
-source ./prepare.sh
+#source ./env.sh
 cd elfutils-0.189
 
 export CFLAGS="-fPIC -I /home/xxm/ebpf/zlib-1.3.1/_install/include"

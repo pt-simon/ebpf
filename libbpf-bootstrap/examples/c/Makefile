@@ -66,7 +66,7 @@ define allow-override
     $(eval $(1) = $(2)))
 endef
 
-$(call allow-override,CC,$(CROSS_COMPILE)cc)
+$(call allow-override,CC,$(CROSS_COMPILE)gcc)
 $(call allow-override,LD,$(CROSS_COMPILE)ld)
 
 .PHONY: all
@@ -129,7 +129,7 @@ $(BZS_APPS): $(LIBBLAZESYM_OBJ)
 # Build application binary
 $(APPS): %: $(OUTPUT)/%.o $(LIBBPF_OBJ) | $(OUTPUT)
 	$(call msg,BINARY,$@)
-	$(Q)$(CC) $(CFLAGS) $^ $(ALL_LDFLAGS) -lelf -lz -o $@
+	$(Q)$(CC) $(CFLAGS) $^ $(ALL_LDFLAGS) -lelf -lz -o $@  --static
 
 # delete failed targets
 .DELETE_ON_ERROR:
